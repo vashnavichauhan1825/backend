@@ -1,11 +1,14 @@
 const express = require('express');
+const path = require('path');
 const port=2118;
 
 var app = express();
 
-app.get('/about',function(req,res){
-    console.log(req.url);
-    res.send('<h1 style="background-color:grey">its working babes')
+app.set('view engine','ejs');
+app.set('views',path.join(__dirname,'views'));
+
+app.get('/',function(req,res){
+    return res.render('main');
 });
 
 app.listen(port,function(err){
