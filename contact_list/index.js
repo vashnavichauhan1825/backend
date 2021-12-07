@@ -6,6 +6,7 @@ var app = express();
 
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
+app.use(express.urlencoded());
 
 var bookList=[
     {
@@ -38,7 +39,12 @@ app.get('/profile',function(req,res){
 
 
 app.post('/addBook', function(req,res){
-    return res.redirect('/profile');
+    bookList.push({
+        name:req.body.name,
+        author:req.body.author,
+
+    })
+    return res.redirect('/');
 })
 app.listen(port,function(err){
     if(err){
