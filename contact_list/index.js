@@ -23,6 +23,22 @@ var bookList=[
     },
 ]
 
+// -----middle ware 1-----
+
+app.use(function(req,res,next){
+    req.myBook="i am flying"
+     console.log("it's working babes !");
+    next();
+});
+
+// -----middle ware 2----
+
+app.use(function(req,res,next){
+    console.log(req.myBook);
+    console.log('middle ware 2 is working ! ');
+    next();
+});
+
 app.get('/',function(req,res){
     return res.render('main',{
         title:"MY collection",
@@ -31,8 +47,10 @@ app.get('/',function(req,res){
 });
 
 app.get('/profile',function(req,res){
+
     return res.render('profile',{
-        title:'colors all around !'
+        title:'colors all around ! '
+
       
     })
 })
@@ -43,7 +61,7 @@ app.post('/addBook', function(req,res){
         name:req.body.name,
         author:req.body.author,
 
-    })
+    });
     return res.redirect('/');
 })
 app.listen(port,function(err){
