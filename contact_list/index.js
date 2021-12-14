@@ -12,6 +12,8 @@ app.use(express.static('assets'));
 
 const db = require('./config/mongoose');
 
+const Book =require('./models/book');
+
 var bookList=[
     {
         name:"think like a monk",
