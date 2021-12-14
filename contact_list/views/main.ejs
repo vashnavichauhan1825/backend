@@ -7,23 +7,39 @@
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <h3 style="border:2px solid red;">collection of books !</h3>
+    <div class="container">
+    <h3>VASHNAVI'S LIBRARY </h3>
     <ol >
        <% for(let i of book_list){%>
-        <li>
-           <p><%= i.name %></p>
-            <p><%= i.author %></p>
+        <div class="holder-div">
+        <li class="book">
+            <div>
+            <p><%= i.name %></p>
+            <small><%='✍'+ i.author %></small>
+        
+       
+            <a href="/delete-book/?name=<%= i.name %>">
+                <i class="fa fa-trash"></i>
+            </a> 
+        </div>
         </li>
+        </div>
         <%}%>
     </ol>
    <div>
     <form action="/addBook" method="post">
-        <input type="text" name="name" placeholder="enter book title here !" required><br><br>
-        <input type="text" name="author" placeholder="enter author name here !" required><br><br>
-        <button type="submit">ADD BOOK</button>
+        <h5>CAN YOU ADD SOME GOOD 📚 IN MY LIBRARY 👇</h5>
+        <label id="title-name">Title name :</label><br>
+        <input id="title-name" type="text" name="name" placeholder="enter book title here !" required><br><br>
+        <label id="author-name">Author name :</label><br>
+        <input id="author-name" type="text" name="author" placeholder="enter author name here !" required><br><br>
+        <button type="submit" >ADD BOOK</button>
      </form>
 </div>
 </body>
+<script src="home.js"></script>
 </html>
