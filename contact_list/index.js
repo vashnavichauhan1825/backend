@@ -93,18 +93,17 @@ app.post('/addBook', function(req,res){
 // });
 
 app.get('/delete-book/', function(req,res){
-    console.log(req.query);
-    let name = req.query.name;
-   
-    let bookIndex = bookList.findIndex(bookCheck =>bookCheck.name == name);
-   
     
-    console.log(bookIndex);
-    if(bookIndex != -1){
-       
-        bookList.splice(bookIndex,1);
-    }
-    return res.redirect('back');
+    let id = req.query.id;
+
+    Book.findByIdAndDelete(id, function(err){
+        if(err){
+            console.log('error in deleting items from db !');
+            return;
+        }
+        return res.redirect('back');
+    })
+   
 })
 
 app.listen(port,function(err){
