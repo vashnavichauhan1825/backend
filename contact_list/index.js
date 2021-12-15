@@ -62,8 +62,21 @@ app.get('/profile',function(req,res){
 
 
 app.post('/addBook', function(req,res){
-    bookList.push(req.body);
-    return res.redirect('/');
+    // bookList.push(req.body);
+     
+     Book.create({
+         name:req.body.name,
+         author:req.body.author,
+         
+     }, function(err,newBook){
+         if(err){
+             console.log('error in creating book !');
+             return;
+         }
+         console.log("%%%%%%%%",newBook);
+         res.redirect('back');
+
+     })
 });
 
 // app.get('/delete-book/:author', function(req,res){
