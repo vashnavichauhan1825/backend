@@ -46,10 +46,18 @@ var bookList=[
 // });
 
 app.get('/',function(req,res){
-    return res.render('main',{
-        title:"MY collection",
-        book_list:bookList
-});
+
+    Book.find({}, function(err,books){
+        if(err){
+            console.log('error offo !');
+            return;
+        }
+        return res.render('main',{
+            title:"MY collection",
+            book_list: books,
+    });
+    })
+
 });
 
 app.get('/profile',function(req,res){
