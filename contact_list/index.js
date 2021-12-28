@@ -3,12 +3,20 @@ const express = require('express');
 const path = require('path');
 const port=2118;
 
+const expressLayouts = require('express-ejs-layouts');
+
 var app = express();
+//  to extract styles and scripts
+
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
 
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded());
-app.use(express.static('assets'));
+app.use(express.static('./assets'));
+
+app.use(expressLayouts);
 
 const db = require('./config/mongoose');
 
