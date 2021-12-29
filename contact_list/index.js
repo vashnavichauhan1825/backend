@@ -1,9 +1,12 @@
 const { name } = require('ejs');
 const express = require('express');
 const path = require('path');
-const port=2118;
+const port=8888;
 
 const expressLayouts = require('express-ejs-layouts');
+
+
+app.use('/', require('./routes'));
 
 var app = express();
 //  to extract styles and scripts
